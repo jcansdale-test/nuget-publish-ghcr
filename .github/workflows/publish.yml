@@ -33,9 +33,4 @@ jobs:
         run: dotnet pack -p:RepositoryUrl=${{ github.server_url }}/${{ github.repository }} -p:PackageVersion=${{ env.VERSION }} --output .
 
       - name: Publish package
-        run: dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ env.PACKAGES_URL }}/${{ github.repository_owner }}/index.json
-
-      - run: gh api repos/${{ github.repository_owner }}/nuget-install/dispatches <<< '{"event_type":"build"}' --input -
-        if: ${{ env.REPO_TOKEN != null }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+        run: dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ env.PACKAGES_URL }}/${{ github.repository_owner }}/index.json --repository https://jcansdale-058211dd63844b65c.qaboot.net/ghe-admin/first
