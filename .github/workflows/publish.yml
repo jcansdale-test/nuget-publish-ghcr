@@ -31,11 +31,11 @@ jobs:
         run: echo 'public class NuGetPublish { public static void SayHello() { System.Console.WriteLine("Hello from ${{ github.repository }}!"); } }' > NuGetPublish.cs
 
       - name: Build package
-        run: dotnet pack -p:RepositoryUrl=${{ env.REPOSITORY_URL }} -p:PackageVersion=${{ env.VERSION }} --output .
+        run: dotnet pack -p:PackageVersion=${{ env.VERSION }} --output .
 
 #      - name: Publish package
 #        run: dotnet nuget push *.nupkg --api-key ${{ secrets.WRITE_PACKAGES_TOKEN }} --source ${{ env.PACKAGES_URL }}/${{ github.repository_owner }}/index.json
 
       - run: dotnet tool install gpr -g
 
-      - run: gpr push *.nupkg --api-key ${{ secrets.WRITE_PACKAGES_TOKEN }} --subdomain-isolation false
+      - run: gpr push *.nupkg --api-key ${{ secrets.WRITE_PACKAGES_TOKEN }} --subdomain-isolation false --repository ${{ env.REPOSITORY_URL }}
