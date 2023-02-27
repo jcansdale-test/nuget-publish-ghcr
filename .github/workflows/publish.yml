@@ -36,4 +36,4 @@ jobs:
       - name: Publish package
         run: dotnet nuget push *.nupkg --api-key ${{ secrets.WRITE_PACKAGES_TOKEN }} --source ${{ env.PACKAGES_URL }}/${{ github.repository_owner }}/index.json
 
-      - name: dotnet tool install gpr -g
+      - run: dotnet tool install gpr -g
