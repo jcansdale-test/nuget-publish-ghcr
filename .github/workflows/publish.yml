@@ -38,4 +38,4 @@ jobs:
 
       - run: dotnet tool install gpr -g
 
-      - run: gpr push *.nupkg --api-key ${{ secrets.WRITE_PACKAGES_TOKEN }} --subdomain-isolation false --repository ${{ env.REPOSITORY_URL }}
+      - run: gpr push *.nupkg --api-key ${{ secrets.WRITE_PACKAGES_TOKEN }} --subdomain-isolation-off --repository ${{ env.REPOSITORY_URL }}
